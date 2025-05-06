@@ -15,14 +15,14 @@ public class AdherentController {
     @Autowired
     private AdherentService adherentService;
     @GetMapping
-    public List<Adherent> getAllAdherent() { return AdherentService.getAllAdherent(); }
+    public List<Adherent> getAllAdherent() { return adherentService.getAllAdherent(); }
     @PostMapping
     public Adherent addAdherent( @RequestBody Adherent adherent) {
-        return AdherentService.addAdherent(adherent);
+        return adherentService.addAdherent(adherent);
     }
     @PutMapping("/{id}")
     public Adherent UpdateAdherent( @PathVariable long id ,@Validated @RequestBody Adherent adherent ) {
-        return AdherentService.UpdateAdherent(id,adherent);
+        return adherentService.UpdateAdherent(id,adherent);
     }
 
 }

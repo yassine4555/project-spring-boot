@@ -13,20 +13,20 @@ import java.util.List;
 public class AdherentService {
     @Autowired
     private AdherentRepositories adherentRepositories;
-    public static List<Adherent> getAllAdherent() {
-        return AdherentService.findAll();
+    public List<Adherent> getAllAdherent() {
+        return adherentRepositories.findAll();
     }
-    public static Adherent addAdherent(Adherent adherent) {
-        return AdherentService.save(adherent);
+    public Adherent addAdherent(Adherent adherent) {
+        return adherentRepositories.save(adherent);
     }
-    public static Adherent UpdateAdherent(long id, Adherent adherent){
-    return AdherentRepositories.findById(id)
-    .map(Adherent adherent ->{
-        adherent.setNomA(UpdateAdherent.getNomA());
-        adherent.setPrenomA(UpdateAdherent.getPrenomA());
-        return AdherentRepositories.save(adherent);
-    })
-            .orElseThrow(() -> new RuntimeException("adherent non trouvé"));
+    public Adherent UpdateAdherent(long id, Adherent adherent) {
+        return adherentRepositories.findById((int) id)
+                .map(existingAdherent -> {
+                    existingAdherent.setNomA(adherent.getNomA());
+                    existingAdherent.setPrenomA(adherent.getPrenomA());
+                    return adherentRepositories.save(existingAdherent);
+                })
+                .orElseThrow(() -> new RuntimeException("adherent non trouvé"));
     }
     public void deleteAdherent(int id) {
         adherentRepositories.deleteById(id);
