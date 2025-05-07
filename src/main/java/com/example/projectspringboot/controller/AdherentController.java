@@ -21,7 +21,7 @@ public class AdherentController {
         return adherentService.addAdherent(adherent);
     }
     @PutMapping("/{id}")
-    public Adherent UpdateAdherent( @PathVariable long id ,@Validated @RequestBody Adherent adherent ) {
+    public Adherent UpdateAdherent( @PathVariable long id , @RequestBody Adherent adherent ) {
         return adherentService.UpdateAdherent(id,adherent);
     }
 
