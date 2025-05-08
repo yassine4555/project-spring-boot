@@ -6,6 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "seances")
 public class Seance {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -14,11 +15,17 @@ public class Seance {
     private int dateS;
     private int Nbheures;
 
-    @OneToMany(mappedBy = "seance", cascade = CascadeType.ALL)
-    private List<Adherent> adherents;
-
+    // Relation One-To-Many avec Moniteur
     @OneToMany(mappedBy = "seance", cascade = CascadeType.ALL)
     private List<Moniteur> moniteurs;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getHeureS() {
         return heureS;
@@ -40,16 +47,8 @@ public class Seance {
         return Nbheures;
     }
 
-    public void setNbheures(int nbheures) {
-        Nbheures = nbheures;
-    }
-
-    public List<Adherent> getAdherents() {
-        return adherents;
-    }
-
-    public void setAdherents(List<Adherent> adherents) {
-        this.adherents = adherents;
+    public void setNbheures(int Nbheures) {
+        this.Nbheures = Nbheures;
     }
 
     public List<Moniteur> getMoniteurs() {
