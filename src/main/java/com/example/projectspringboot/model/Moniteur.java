@@ -1,5 +1,6 @@
 package com.example.projectspringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,7 +16,13 @@ public class Moniteur {
 
     // Relation avec Seance (Many-To-One)
     @ManyToOne
-    @JoinColumn(name = "seance_id") // Colonne dans la table "moniteurs"
+    @JsonIgnore
+
+    @JoinColumns({
+      @JoinColumn(name = "dateS", referencedColumnName = "dateS"), // Colonne 1 de la clé composite
+      @JoinColumn(name = "heureS", referencedColumnName = "heureS") // Colonne 2 de la clé composite
+    })
+    // Colonne dans la table "moniteurs"
     private Seance seance;
 
     public int getIdM() {

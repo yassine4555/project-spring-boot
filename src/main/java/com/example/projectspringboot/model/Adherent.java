@@ -1,5 +1,6 @@
 package com.example.projectspringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -14,8 +15,14 @@ public class Adherent {
     private String prenomA;
     private String ville;
 
-    @ManyToOne
-    @JoinColumn(name = "seance_id") // Colonne de jointure pour seance
+  @ManyToOne
+  @JsonIgnore
+
+  @JoinColumns({
+    @JoinColumn(name = "dateS", referencedColumnName = "dateS"), // Colonne 1 de la clé composite
+    @JoinColumn(name = "heureS", referencedColumnName = "heureS") // Colonne 2 de la clé composite
+  })
+// Colonne de jointure pour seance
     private Seance seance;
 
     public void setNomA(String nomA) {
